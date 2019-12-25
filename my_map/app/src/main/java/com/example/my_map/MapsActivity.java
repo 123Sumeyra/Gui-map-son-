@@ -122,6 +122,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
 
             Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (lastLocation != null)
             System.out.println("lastLocation: " + lastLocation);
             LatLng userLastLocation = new LatLng(lastLocation.getLatitude(),lastLocation.getLongitude());
             mMap.addMarker(new MarkerOptions().title("Your Location").position(userLastLocation));
@@ -144,10 +145,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 }
             }
+
         }
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
     }
+
 
     @Override
     public void onMapLongClick(LatLng latLng) {
